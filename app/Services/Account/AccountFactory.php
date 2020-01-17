@@ -13,15 +13,12 @@ class AccountFactory
 {
     public function getAccount($type)
     {
-        if($type == null) {
-            return null;
-        }
 
         switch ($type) {
-            case "saving":
+            case config('acc_types.saving'):
                 return new SavingAccount();
-            case $type:
-                return new SavingAccount();
+            default:
+                return null;
         }
     }
 }
