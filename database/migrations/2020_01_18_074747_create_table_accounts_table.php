@@ -14,11 +14,11 @@ class CreateTableAccountsTable extends Migration
     public function up()
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('account_number');
+            $table->increments('id');
+            $table->bigInteger('account_number');
             $table->integer('type');
             $table->float('balance');
-            $table->bigInteger('customer_id');
+            $table->integer('customer_id');
             $table->timestamps();
         });
     }

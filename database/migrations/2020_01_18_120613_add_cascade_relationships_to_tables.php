@@ -13,13 +13,13 @@ class AddCascadeRelationshipsToTables extends Migration
      */
     public function up()
     {
-        Schema::table('accounts', function (Blueprint $table) {
-            $table->foreign('customer_id')->references('id')->on('customers');
-        });
-
-        Schema::table('transactions', function (Blueprint $table) {
-            $table->foreign('account_id')->references('id')->on('accounts');
-        });
+//        Schema::table('accounts', function (Blueprint $table) {
+//            $table->foreign('customer_id')->references('id')->on('customers');
+//        });
+//
+//        Schema::table('transactions', function (Blueprint $table) {
+//            $table->foreign('account_id')->references('id')->on('accounts');
+//        });
     }
 
     /**

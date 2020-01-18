@@ -14,9 +14,9 @@ class CreateTableTransactionTable extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('account_number');
-            $table->bigInteger('account_id');
+            $table->increments('id');
+            $table->bigInteger('account_number');
+            $table->integer('account_id');
             $table->float('amount');
             $table->string('action_type');//credit or debit
             $table->float('current_balance');//balance after specific transaction
