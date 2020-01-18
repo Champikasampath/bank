@@ -11,5 +11,13 @@ namespace App\Services\Account;
 
 class SavingAccount extends Account
 {
+    public function generateAccountNumber()
+    {
+        
+    }
 
+    public function getAccountDetails()
+    {
+        
+    }
 }

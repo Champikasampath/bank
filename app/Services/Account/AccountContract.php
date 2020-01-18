@@ -16,7 +16,9 @@ interface AccountContract
      */
     public function getBalance();
 
-    /**
+    /***
+     * @param $balance
+     *
      * @return mixed
      */
     public function setBalance($balance);
