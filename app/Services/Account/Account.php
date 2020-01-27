@@ -135,6 +135,7 @@ abstract class Account implements AccountContract
     public function commit()
     {
         $this->accounts_repository->create([
+            'account_number' => $this->accountNumber,
             'branch_id' => $this->branch_id,
             'customer_id' => $this->customer_id,
             'balance' => $this->balance,

@@ -16,9 +16,6 @@ class SavingAccount extends Account
 {
     /**
      * SavingAccount constructor.
-     *
-     * @param $branch_id
-     * @param $customer_id
      */
     public function __construct()
     {

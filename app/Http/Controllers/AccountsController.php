@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 
 class AccountsController extends Controller
 {
-
-    
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function createAccount(Request $request)
     {
         try {
