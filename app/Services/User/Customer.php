@@ -11,5 +11,8 @@ namespace App\Services\User;
 
 class Customer
 {
-
+    public function create()
+    {
+        
+    }
 }

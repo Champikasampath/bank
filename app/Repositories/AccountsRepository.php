@@ -8,8 +8,13 @@
 
 namespace App\Repositories;
 
+use App\Models\AccountModel;
+use App\Services\Account\AccountFactory;
 
 class AccountsRepository
 {
-
+    public function create($data)
+    {
+        return AccountModel::create($data);
+    }
 }

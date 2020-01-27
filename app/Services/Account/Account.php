@@ -9,6 +9,7 @@
 namespace App\Services\Account;
 
 
+use App\Repositories\AccountsRepository;
 use App\Services\User\Customer;
 
 abstract class Account implements AccountContract
@@ -54,6 +55,8 @@ abstract class Account implements AccountContract
     {
 //        $this->branch_id = $branch_id;
 //        $this->customer_id = $customer_id;
+//        $this->calculateMonthlyInterest();
+        $this->accounts_repository = new AccountsRepository();
     }
 
     /**
@@ -74,10 +77,37 @@ abstract class Account implements AccountContract
         $this->balance = $balance;
     }
 
+    /**
+     * @return int
+     */
     public function getCustomer()
     {
         return $this->customer_id;
     }
+    /**
+     * @param $customer
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer_id = $customer;
+    }
+
+    /**
+     * @param $branch_id
+     */
+    public function setBranchId($branch_id)
+    {
+        $this->branch_id = $branch_id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBranchId()
+    {
+        return $this->branch_id;
+    }
+
     /**
      * @return mixed
      */
@@ -89,10 +119,25 @@ abstract class Account implements AccountContract
     public abstract function getAccountDetails();
 
     /**
-     *
+     * calculate interest
+     * Runs on month end
      */
-    public function calculateInterest()
+    public function calculateMonthlyInterest()
     {
-        
+//        $this->interest = $this->balance * $this->interest_rate;
+    }
+
+    public function setInterest()
+    {
+        $this->interest = 0;
+    }
+
+    public function commit()
+    {
+        $this->accounts_repository->create([
+            'branch_id' => $this->branch_id,
+            'customer_id' => $this->customer_id,
+            'balance' => $this->balance,
+        ]);
     }
 }

@@ -3,19 +3,19 @@
  * Created by PhpStorm.
  * User: champika
  * Date: 1/18/20
- * Time: 1:19 AM
+ * Time: 12:18 PM
  */
 
-namespace App\Services\Account;
+namespace App\Services\Transaction;
 
 
-class AccountFactory
+class TransactionFactory
 {
-    public static function init($type)
+    public static function init($type, $amount)
     {
         switch ($type) {
             case config('acc_types.saving'):
-                return new SavingAccount();
+                return new DebitCard($amount);
             default:
                 return null;
         }
