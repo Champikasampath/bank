@@ -13,6 +13,7 @@ class AccountFactory
 {
     public static function init($type)
     {
+        dd(config('acc_types.saving'));
         switch ($type) {
             case config('acc_types.saving'):
                 return new SavingAccount();

@@ -15,6 +15,7 @@ class AccountsRepository
 {
     public function create($data)
     {
+//        dd($data);
         return AccountModel::create($data);
     }
 }

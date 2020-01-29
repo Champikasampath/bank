@@ -14,12 +14,15 @@ namespace App\Services\Account;
  */
 class SavingAccount extends Account
 {
+    protected $type;
     /**
      * SavingAccount constructor.
      */
     public function __construct()
     {
         parent::__construct();
+        $this->type = config("acc_types.saving");
+        $this->generateAccountNumber();
     }
 
     /**
@@ -29,6 +32,7 @@ class SavingAccount extends Account
     public function generateAccountNumber()
     {
         $acc_number = config('constants.bank_code') . $this->branch_id . $this->customer_id . abs( crc32( uniqid() ) );
+        $this->accountNumber = $acc_number;
         return $acc_number;
     }
 

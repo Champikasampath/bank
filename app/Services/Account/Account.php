@@ -14,7 +14,10 @@ use App\Services\User\Customer;
 
 abstract class Account implements AccountContract
 {
-
+    /**
+     * @var
+     */
+    protected $type;
     /**
      * @var float
      */
@@ -136,6 +139,7 @@ abstract class Account implements AccountContract
     {
         $this->accounts_repository->create([
             'account_number' => $this->accountNumber,
+            'type' => $this->type,
             'branch_id' => $this->branch_id,
             'customer_id' => $this->customer_id,
             'balance' => $this->balance,
