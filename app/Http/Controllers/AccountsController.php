@@ -20,9 +20,9 @@ class AccountsController extends Controller
             $account->setCustomer($request->input('customer_id'));
             $account->setBranchId($request->input('branch_id'));
             $response = $account->commit();
-            return response()->json($response, '200');
+            return response()->json($response, 200);
         } catch (\Exception $e) {
-            return response()->json($e->getMessage(), '500');
+            return response()->json($e->getMessage(), 500);
         }
     }
 }

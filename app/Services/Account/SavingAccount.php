@@ -21,7 +21,7 @@ class SavingAccount extends Account
     public function __construct()
     {
         parent::__construct();
-        $this->type = config("acc_types.saving");
+        $this->type = config('account.acc_types.saving');
         $this->generateAccountNumber();
     }
 
