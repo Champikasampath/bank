@@ -27,4 +27,14 @@ interface AccountContract
      * @return mixed
      */
     public function generateAccountNumber();
+
+    /**
+     * @return mixed
+     */
+    public function setCustomer($customer);
+
+    /**
+     * @return mixed
+     */
+    public function getCustomer();
 }

@@ -36,8 +36,20 @@ class SavingAccount extends Account
         return $acc_number;
     }
 
-    public function getAccountDetails()
+    /**
+     * @param $ano
+     *
+     * @return array|mixed
+     * different account types will have different return types
+     *
+     */
+    public function getAccountDetails($ano)
     {
-        
+        $data = $this->accounts_repository->read($ano);
+        return [
+            'type' => $data->type,
+            'account_number' => $data->account_number,
+            'balance' => $data->balance,
+        ];
     }
 }

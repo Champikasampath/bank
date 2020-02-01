@@ -49,6 +49,16 @@ abstract class Account implements AccountContract
     protected $customer_id;
 
     /**
+     * @var AccountsRepository
+     */
+    protected $accounts_repository;
+
+    /**
+     * @var int
+     */
+    protected $od_limit = 0;
+
+    /**
      * Account constructor.
      *
      * @param $branch_id
@@ -117,9 +127,11 @@ abstract class Account implements AccountContract
     public abstract function generateAccountNumber();
 
     /**
+     * @param $ano
+     *
      * @return mixed
      */
-    public abstract function getAccountDetails();
+    public abstract function getAccountDetails($ano);
 
     /**
      * calculate interest
@@ -130,15 +142,35 @@ abstract class Account implements AccountContract
 //        $this->interest = $this->balance * $this->interest_rate;
     }
 
+    /**
+     * set calculated interest to the date
+     */
     public function setInterest()
     {
         $this->interest = 0;
     }
 
-    public function commit()
+    /**
+     * save changes to the account
+     */
+    public function save()
     {
+
         $this->accounts_repository->create([
             'account_number' => $this->accountNumber,
+            'type' => $this->type,
+            'branch_id' => $this->branch_id,
+            'customer_id' => $this->customer_id,
+            'balance' => $this->balance,
+        ]);
+    }
+
+    /**
+     * update records
+     */
+    public function update()
+    {
+        $this->accounts_repository->update($this->accountNumber,[
             'type' => $this->type,
             'branch_id' => $this->branch_id,
             'customer_id' => $this->customer_id,

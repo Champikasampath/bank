@@ -9,13 +9,55 @@
 namespace App\Repositories;
 
 use App\Models\AccountModel;
-use App\Services\Account\AccountFactory;
 
+/**
+ * Class AccountsRepository
+ * @package App\Repositories
+ */
 class AccountsRepository
 {
+    /**
+     * @param $data
+     *
+     * @return mixed
+     */
     public function create($data)
     {
-//        dd($data);
-        return AccountModel::create($data);
+        try {
+            return AccountModel::create($data);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * @param $ano
+     * @param $data
+     *
+     * @return mixed
+     */
+    public function update($ano, $data)
+    {
+        return AccountModel::where('account_number', $ano)->update($data);
+    }
+
+    /**
+     * @param $ano
+     *
+     * @return mixed
+     */
+    public function read($ano)
+    {
+        return AccountModel::where('account_number', $ano)->first();
+    }
+
+    /**
+     * @param $ano
+     *
+     * @return int
+     */
+    public function delete($ano)
+    {
+        return AccountModel::destroy($ano);
     }
 }
