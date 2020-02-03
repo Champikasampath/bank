@@ -10,6 +10,7 @@ namespace App\Services\Account;
 
 
 use App\Repositories\AccountsRepository;
+use App\Repositories\TransactionsRepository;
 use App\Services\User\Customer;
 
 abstract class Account implements AccountContract
@@ -54,6 +55,11 @@ abstract class Account implements AccountContract
     protected $accounts_repository;
 
     /**
+     * @var AccountsRepository
+     */
+    protected $transactions_repository;
+
+    /**
      * @var int
      */
     protected $od_limit = 0;
@@ -66,10 +72,8 @@ abstract class Account implements AccountContract
      */
     public function __construct()
     {
-//        $this->branch_id = $branch_id;
-//        $this->customer_id = $customer_id;
-//        $this->calculateMonthlyInterest();
         $this->accounts_repository = new AccountsRepository();
+        $this->transactions_repository = new TransactionsRepository();
     }
 
     /**

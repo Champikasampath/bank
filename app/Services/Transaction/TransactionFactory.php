@@ -15,7 +15,7 @@ class TransactionFactory
     {
         switch ($type) {
             case config('acc_types.saving'):
-                return new DebitCard($amount);
+                return new Withdraw($amount);
             default:
                 return null;
         }

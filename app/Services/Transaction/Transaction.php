@@ -9,6 +9,9 @@
 namespace App\Services\Transaction;
 
 
+use App\Repositories\AccountsRepository;
+use App\Repositories\TransactionsRepository;
+
 abstract class Transaction implements TransactionContract
 {
     /**
@@ -31,6 +34,25 @@ abstract class Transaction implements TransactionContract
      */
     protected $current_balance;
 
+    /**
+     * @var TransactionsRepository
+     */
+    protected $transaction_repository;
+
+    /**
+     * @var AccountsRepository
+     */
+    protected $account_repository;
+
+    /**
+     * Transaction constructor.
+     */
+    public function __construct()
+    {
+        $this->transaction_repository = new TransactionsRepository();
+        $this->account_repository = new AccountsRepository();
+    }
+    
     /**
      * @param $action
      *
@@ -84,8 +106,14 @@ abstract class Transaction implements TransactionContract
         return $this->account_number;
     }
 
+    /**
+     * setCurrentBalance
+     */
     public function setCurrentBalance()
     {
+        $account = $this->account_repository->read($this->account_number);
+        $this->current_balance = $account->balance - $this->amount;
+        $this->account_repository->update($this->account_number, ['balance' => $this->amount]);
     }
 
     /**
@@ -115,4 +143,17 @@ abstract class Transaction implements TransactionContract
      * @return mixed
      */
     public abstract static function create($ano, $type, $amount);
+
+    /**
+     * save transaction data
+     */
+    public function commit()
+    {
+        $this->transaction_repository->create([
+            'account_number' => $this->account_number,
+            'amount' => $this->amount,
+            'action_type' => $this->action_type,
+            'current_balance' => $this->current_balance,
+        ]);
+    }
 }
