@@ -10,5 +10,39 @@ namespace App\Services\Transaction;
 
 interface TransactionContract
 {
-    public function setAmount();
+    /**
+     * @param $amount
+     *
+     * @return mixed
+     */
+    public function setAmount($amount);
+
+    /**
+     * @return mixed
+     */
+    public function getAmount();
+
+    /**
+     * @param $ano
+     *
+     * @return mixed
+     */
+    public function setAccountNumber($ano);
+
+    /**
+     * @return mixed
+     */
+    public function getAccountNumber();
+
+    /**
+     * @param $type
+     *
+     * @return mixed
+     */
+    public function setActionType($type);
+
+    /**
+     * @return mixed
+     */
+    public function getActionType();
 }

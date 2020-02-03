@@ -14,12 +14,14 @@ use App\Models\TransactionModel;
 class TransactionsRepository
 {
     /**
+     * @param $data
+     *
      * @return string
      */
-    public function create()
+    public function create($data)
     {
         try {
-            return TransactionModel::create();
+            return TransactionModel::create([$data]);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
