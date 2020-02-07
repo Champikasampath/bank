@@ -14,7 +14,7 @@ class TransactionFactory
     public static function init($type, $amount)
     {
         switch ($type) {
-            case config('acc_types.saving'):
+            case 'withdraw':
                 return new Withdraw($amount);
             default:
                 return null;

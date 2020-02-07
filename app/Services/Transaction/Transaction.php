@@ -109,12 +109,7 @@ abstract class Transaction implements TransactionContract
     /**
      * setCurrentBalance
      */
-    public function setCurrentBalance()
-    {
-        $account = $this->account_repository->read($this->account_number);
-        $this->current_balance = $account->balance - $this->amount;
-        $this->account_repository->update($this->account_number, ['balance' => $this->amount]);
-    }
+    public abstract function setCurrentBalance();
 
     /**
      * @return mixed
@@ -137,12 +132,11 @@ abstract class Transaction implements TransactionContract
 
     /**
      * @param $ano
-     * @param $type
      * @param $amount
      *
      * @return mixed
      */
-    public abstract static function create($ano, $type, $amount);
+    public abstract static function create($ano, $amount);
 
     /**
      * save transaction data

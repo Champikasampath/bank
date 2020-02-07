@@ -39,12 +39,14 @@ class Customer
     /**
      * @param $name
      * @param $address
+     *
+     * @return string
      */
     public static function create($name, $address)
     {
         $customer = new Customer();
         $customer->setData($name, $address);
-        $customer->saveCustomerData();
+        return $customer->saveCustomerData();
     }
 
     /**

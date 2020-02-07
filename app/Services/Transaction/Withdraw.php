@@ -11,6 +11,7 @@ namespace App\Services\Transaction;
 
 class Withdraw extends Transaction
 {
+    protected $action_type = 'debit';
     /**
      * Withdraw constructor.
      *
@@ -23,15 +24,21 @@ class Withdraw extends Transaction
     }
     /**
      * @param $ano
-     * @param $type
      * @param $amount
      *
      * @return mixed
      */
-    public static function create($ano, $type, $amount)
+    public static function create($ano, $amount)
     {
         $transaction = new Withdraw();
-        $transaction->create($ano, $type, $amount);
+        $transaction->create($ano, $transaction->action_type, $amount);
         return $transaction->commit();
+    }
+
+    public function setCurrentBalance()
+    {
+        $account = $this->account_repository->read($this->account_number);
+        $this->current_balance = $account->balance - $this->amount;
+        $this->account_repository->update($this->account_number, ['balance' => $this->amount]);
     }
 }
