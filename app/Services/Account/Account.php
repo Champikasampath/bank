@@ -66,9 +66,6 @@ abstract class Account implements AccountContract
 
     /**
      * Account constructor.
-     *
-     * @param $branch_id
-     * @param $customer_id
      */
     public function __construct()
     {
@@ -182,7 +179,7 @@ abstract class Account implements AccountContract
         ]);
     }
 
-    public function deleteAccount()
+    public function deactivateAccount($id)
     {
         
     }
