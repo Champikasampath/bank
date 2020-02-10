@@ -25,4 +25,14 @@ class AccountsController extends Controller
             return response()->json($e->getMessage(), 500);
         }
     }
+
+    public function delete(Request $request)
+    {
+        try {
+            $account = AccountFactory::init($request->input('type'));
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 500);
+        }
+    }
 }

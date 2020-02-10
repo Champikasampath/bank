@@ -60,4 +60,9 @@ class AccountsRepository
     {
         return AccountModel::destroy($ano);
     }
+
+    public function softDelete()
+    {
+        
+    }
 }

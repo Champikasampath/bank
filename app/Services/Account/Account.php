@@ -181,4 +181,9 @@ abstract class Account implements AccountContract
             'balance' => $this->balance,
         ]);
     }
+
+    public function deleteAccount()
+    {
+        
+    }
 }
