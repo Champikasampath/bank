@@ -15,9 +15,9 @@ class TransactionsController extends Controller
             $amount = $request->input('amount');
             $account_number = $request->input('account_number');
             $action_type = $request->input('action_type');
-            TransactionFactory::init();
+            $transaction = TransactionFactory::init('withdraw', 200);
         } catch (\Exception $e) {
-
+            return response()->json($e->getMessage());
         }
     }
 }

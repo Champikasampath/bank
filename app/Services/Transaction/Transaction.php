@@ -45,6 +45,11 @@ abstract class Transaction implements TransactionContract
     protected $account_repository;
 
     /**
+     * @var balance allowed to perform a transaction
+     */
+    protected $allowed_balance;
+
+    /**
      * Transaction constructor.
      */
     public function __construct()
@@ -74,10 +79,15 @@ abstract class Transaction implements TransactionContract
      * @param $amount
      *
      * @return mixed|void
+     * @throws \Exception
      */
     public function setAmount($amount)
     {
-        $this->amount = $amount;
+        if($this->allowed_balance >= $amount) {
+            $this->amount = $amount;
+        } else {
+            throw new \Exception('Insufficient funds');
+        }
     }
 
     /**

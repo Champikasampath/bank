@@ -11,7 +11,7 @@ namespace App\Services\Transaction;
 
 class TransactionFactory
 {
-    public static function init($type, $amount)
+    public static function init($type, $amount = 100)
     {
         switch ($type) {
             case 'withdraw':
