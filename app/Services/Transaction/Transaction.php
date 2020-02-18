@@ -124,6 +124,11 @@ abstract class Transaction implements TransactionContract
     /**
      * @return mixed
      */
+    public abstract function calculateAllowedBalance();
+
+    /**
+     * @return mixed
+     */
     public function getCurrentBalance()
     {
         return $this->current_balance;
@@ -133,6 +138,8 @@ abstract class Transaction implements TransactionContract
      * @param $ano
      * @param $type
      * @param $amount
+     *
+     * @throws \Exception
      */
     protected function initTransaction($ano, $type, $amount) {
         $this->setAccountNumber($ano);
@@ -148,6 +155,11 @@ abstract class Transaction implements TransactionContract
      */
     public abstract static function create($ano, $amount);
 
+    public function getTransactions($from, $to, $ano)
+    {
+
+    }
+
     /**
      * save transaction data
      */
@@ -159,5 +171,10 @@ abstract class Transaction implements TransactionContract
             'action_type' => $this->action_type,
             'current_balance' => $this->current_balance,
         ]);
+    }
+
+    public function updateAccountBalance()
+    {
+        
     }
 }

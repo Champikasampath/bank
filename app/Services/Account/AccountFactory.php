@@ -14,8 +14,8 @@ class AccountFactory
     public static function init($type)
     {
         switch ($type) {
-            case config('account.acc_types.saving'):
-                return new SavingAccount();
+            case config('account.acc_types.saving')://integer for each account type is stored in config files
+            return new SavingAccount();
             default:
                 return null;
         }

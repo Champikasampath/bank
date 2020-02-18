@@ -31,6 +31,8 @@ class SavingAccount extends Account
      */
     public function generateAccountNumber()
     {
+        //account number is generated using bank code which has stored as constant concatenating branch_id, customer_id
+        //and unique number
         $acc_number = config('constants.bank_code') . $this->branch_id . $this->customer_id . abs( crc32( uniqid() ) );
         $this->accountNumber = $acc_number;
         return $acc_number;

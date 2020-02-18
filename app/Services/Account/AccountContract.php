@@ -37,4 +37,16 @@ interface AccountContract
      * @return mixed
      */
     public function getCustomer();
+
+    /**
+     * @param $branch_id
+     *
+     * @return mixed
+     */
+    public function setBranchId($branch_id);
+
+    /**
+     * @return mixed
+     */
+    public function getBranchId();
 }

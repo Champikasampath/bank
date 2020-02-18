@@ -15,21 +15,26 @@ class Withdraw extends Transaction
      * @var string 
      */
     protected $action_type = 'debit';
+
     /**
      * Withdraw constructor.
      *
      * @param int $amount
+     *
+     * @throws \Exception
      */
     public function __construct($amount = 100)
     {
         parent::__construct();
         $this->setAmount($amount);
     }
+
     /**
      * @param $ano
      * @param $amount
      *
      * @return mixed
+     * @throws \Exception
      */
     public static function create($ano, $amount)
     {
@@ -46,5 +51,10 @@ class Withdraw extends Transaction
         $account = $this->account_repository->read($this->account_number);
         $this->current_balance = $account->balance - $this->amount;
         $this->account_repository->update($this->account_number, ['balance' => $this->amount]);
+    }
+
+    public function calculateAllowedBalance()
+    {
+        
     }
 }

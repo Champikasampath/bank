@@ -8,7 +8,6 @@
 
 namespace App\Services\Account;
 
-
 use App\Repositories\AccountsRepository;
 use App\Repositories\TransactionsRepository;
 use App\Services\User\Customer;
@@ -143,6 +142,12 @@ abstract class Account implements AccountContract
 //        $this->interest = $this->balance * $this->interest_rate;
     }
 
+    public function calculateDailyInterest()
+    {
+        $this->interest = ($this->balance * $this->interest_rate / 100);
+    }
+
+
     /**
      * set calculated interest to the date
      */
@@ -156,7 +161,6 @@ abstract class Account implements AccountContract
      */
     public function save()
     {
-
         $this->accounts_repository->create([
             'account_number' => $this->accountNumber,
             'type' => $this->type,
@@ -177,6 +181,11 @@ abstract class Account implements AccountContract
             'customer_id' => $this->customer_id,
             'balance' => $this->balance,
         ]);
+    }
+
+    public function getStatement($from, $to)
+    {
+
     }
 
     public function deactivateAccount($id)

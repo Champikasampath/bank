@@ -55,4 +55,20 @@ class TransactionsRepository
             return $e->getMessage();
         }
     }
+
+    /**
+     * @param $from
+     * @param $to
+     * @param $ano
+     *
+     * @return string
+     */
+    public function getTransactions($from, $to, $ano)
+    {
+        try {
+            return TransactionModel::where()->get();
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }
