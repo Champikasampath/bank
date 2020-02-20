@@ -14,10 +14,14 @@ class CustomersController extends Controller
      */
     public function createCustomer(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+        ]);//validation
         try {
             $name = $request->input('name');
             $address = $request->input('address');
-            return Customer::create($name, $address);
+            return Customer::create($name, $address);//use of customer service's static factory method
         } catch (\Exception $e) {
             return $e->getMessage();
         }

@@ -14,13 +14,20 @@ class AccountsController extends Controller
      */
     public function create(Request $request)
     {
+        $request->validate([
+            'type' => 'required',
+            'customer_id' => 'required',
+            'branch_id' => 'required'
+        ]);//laravel default validation has been used
+
         try {
-            $account = AccountFactory::init($request->input('type'));
+            $account = AccountFactory::init($request->input('type'));//init requested account type by passing the
+            //type to AccountFactory
             $account->setBalance(1000);
             $account->setCustomer($request->input('customer_id'));
             $account->setBranchId($request->input('branch_id'));
-            $response = $account->commit();
-            return response()->json($response, 200);
+            $response = $account->commit(); //save to database
+            return response()->json($response, 200);// send response back to client
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 500);
         }

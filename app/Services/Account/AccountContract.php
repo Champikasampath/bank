@@ -29,6 +29,8 @@ interface AccountContract
     public function generateAccountNumber();
 
     /**
+     * @param $customer
+     *
      * @return mixed
      */
     public function setCustomer($customer);

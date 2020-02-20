@@ -11,5 +11,20 @@ namespace App\Services\Transaction;
 
 class DebitCard extends Transaction
 {
+    public function setCurrentBalance()
+    {
+        
+    }
 
+    public function calculateAllowedBalance()
+    {
+        
+    }
+
+    public static function create($ano, $amount)
+    {
+        $transaction = new DebitCard();
+        $transaction->create($ano, $transaction->action_type, $amount);
+        return $transaction->commit();
+    }
 }
